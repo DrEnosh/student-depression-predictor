@@ -20,9 +20,6 @@ env/
 *.swp
 *.swo
 
-# Models (large files)
-models/*.joblib
-models/*.pkl
 
 # OS files
 .DS_Store

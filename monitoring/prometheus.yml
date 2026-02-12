@@ -11,3 +11,13 @@ scrape_configs:
           app: "student-depression-api"
           environment: "development"
     scrape_interval: 10s
+
+  - job_name: "render-prod-api"
+    scheme: https
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["student-depression-predictor.onrender.com"]
+        labels:
+          app: "student-depression-api"
+          environment: "production"
+    scrape_interval: 30s

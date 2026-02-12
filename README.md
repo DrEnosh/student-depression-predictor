@@ -231,7 +231,7 @@ python -m src.train
    - `StandardScaler` for numerical features (7 features)
    - `OneHotEncoder` for categorical features (2 features)
 2. **Classifier**: `RandomForestClassifier`
-3. **Tuning**: `RandomizedSearchCV` (50 iterations, 3-fold CV, ROC-AUC scoring)
+3. **Tuning**: `RandomizedSearchCV` (50 iterations, 3-fold CV, F1 scoring, balanced class weights)
 
 ### Tracked Metrics (W&B)
 - Accuracy, F1-Score, ROC-AUC, Precision, Recall

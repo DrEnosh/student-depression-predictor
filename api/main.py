@@ -30,27 +30,6 @@ from src.predict import load_model, predict_single  # noqa: E402
 from src.config import MODEL_PATH  # noqa: E402
 
 
-# --- App Setup ---
-app = FastAPI(
-    title="Student Depression Prediction API",
-    description=(
-        "ML-powered API for predicting student depression risk "
-        "based on lifestyle factors. Built with FastAPI and scikit-learn."
-    ),
-    version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
-)
-
-# CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # --- Model Loading ---
 model = None
 
@@ -89,6 +68,15 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
     lifespan=lifespan,
+)
+
+# CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

@@ -33,8 +33,6 @@ services:
     networks:
       - monitoring
     restart: unless-stopped
-    depends_on:
-      - api
 
   # --- Grafana ---
   grafana:

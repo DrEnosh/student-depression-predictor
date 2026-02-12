@@ -1,16 +1,16 @@
 {
-  "accuracy": 0.8995,
-  "f1_score": 0.02521823472356935,
-  "roc_auc": 0.7019036824196029,
-  "precision": 0.52,
-  "recall": 0.012922465208747515,
+  "accuracy": 0.7356,
+  "f1_score": 0.32257238022034335,
+  "roc_auc": 0.7027229551311213,
+  "precision": 0.2172937521574042,
+  "recall": 0.6257455268389662,
   "best_params": {
-    "classifier__n_estimators": "300",
-    "classifier__min_samples_split": "10",
-    "classifier__min_samples_leaf": "8",
-    "classifier__max_features": "log2",
-    "classifier__max_depth": "15",
-    "classifier__class_weight": "None"
+    "classifier__n_estimators": "100",
+    "classifier__min_samples_split": "20",
+    "classifier__min_samples_leaf": "4",
+    "classifier__max_features": "sqrt",
+    "classifier__max_depth": "5",
+    "classifier__class_weight": "balanced"
   },
-  "best_cv_roc_auc": 0.7034061129866908
+  "best_cv_roc_auc": 0.3273256570410579
 }

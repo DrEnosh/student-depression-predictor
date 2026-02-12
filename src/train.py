@@ -79,7 +79,7 @@ def get_param_distributions():
         "classifier__min_samples_split": [2, 5, 10, 20],
         "classifier__min_samples_leaf": [1, 2, 4, 8],
         "classifier__max_features": ["sqrt", "log2", None],
-        "classifier__class_weight": ["balanced", "balanced_subsample", None],
+        "classifier__class_weight": ["balanced", "balanced_subsample"],
     }
 
 
@@ -169,7 +169,7 @@ def train():
         param_distributions=param_dist,
         n_iter=50,
         cv=3,
-        scoring="roc_auc",
+        scoring="f1",
         n_jobs=-1,
         random_state=RANDOM_STATE,
         verbose=1,
