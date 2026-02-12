@@ -8,6 +8,7 @@ Usage:
 import os
 import sys
 import time
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -54,8 +55,8 @@ app.add_middleware(
 model = None
 
 
-@app.on_event("startup")
-async def startup_event():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """Load the model on application startup."""
     global model
     try:
@@ -74,6 +75,19 @@ async def startup_event():
     except Exception as e:
         print(f"[API] ERROR loading model: {e}")
         MODEL_LOADED.set(0)
+    yield
+
+
+# --- App Setup ---
+app = FastAPI(
+    title="Student Depression Prediction API",
+    description=(
+        "ML-powered API for predicting student depression risk "
+        "based on lifestyle factors. Built with FastAPI and scikit-learn."
+    ),
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
 
 
 # --- Endpoints ---
