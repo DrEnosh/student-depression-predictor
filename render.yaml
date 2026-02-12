@@ -1,0 +1,31 @@
+services:
+  # FastAPI Backend
+  - type: web
+    name: student-depression-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: WANDB_API_KEY
+        sync: false
+      - key: WANDB_PROJECT
+        value: student-depression-classifier
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # Streamlit Frontend
+  - type: web
+    name: student-depression-frontend
+    runtime: python
+    buildCommand: pip install -r frontend/requirements.txt
+    startCommand: streamlit run frontend/app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    envVars:
+      - key: API_URL
+        fromService:
+          name: student-depression-api
+          type: web
+          property: host
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+    autoDeploy: true

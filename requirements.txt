@@ -1,0 +1,37 @@
+# Core ML
+scikit-learn
+pandas
+numpy
+joblib
+
+# Data Layer
+psycopg2-binary; python_version < "3.13"
+psycopg[binary]; python_version >= "3.13"
+sqlalchemy
+
+# Experiment Tracking
+wandb
+
+# API
+fastapi
+uvicorn
+pydantic
+
+# Monitoring
+prometheus-client
+prometheus-fastapi-instrumentator
+
+# Frontend
+streamlit
+requests
+
+# Testing
+pytest
+httpx
+
+# Code Quality
+flake8
+pylint
+
+# Utilities
+python-dotenv
