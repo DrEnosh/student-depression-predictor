@@ -178,8 +178,8 @@ MTA/
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/MTA.git
-cd MTA
+git clone https://github.com/enosh729-design/Student-Depression-Predictor.git
+cd Student-Depression-Predictor
 python -m venv venv
 venv\Scripts\activate          # Windows
 pip install -r requirements.txt
@@ -385,7 +385,7 @@ Both services are configured in `render.yaml`:
 
 | Service | Type | URL |
 |---------|------|-----|
-| Backend (FastAPI) | Docker | `https://student-depression-api.onrender.com` |
+| Backend (FastAPI) | Docker | `https://student-depression-predictor-c3ce.onrender.com` |
 | Frontend (Streamlit) | Python | `https://student-depression-frontend.onrender.com` |
 
 ---
@@ -417,12 +417,10 @@ This ML system enables **early identification** of at-risk students by analyzing
 
 | Service | URL |
 |---------|-----|
-| FastAPI Backend | `https://your-backend.onrender.com` |
-| FastAPI Docs | `https://your-backend.onrender.com/docs` |
-| Streamlit Frontend | `https://your-frontend.onrender.com` |
+| FastAPI Backend | `https://student-depression-predictor-c3ce.onrender.com` |
+| FastAPI Docs | `https://student-depression-predictor-c3ce.onrender.com/docs` |
+| Streamlit Frontend | `https://student-depression-frontend.onrender.com` |
 | W&B Project | `https://wandb.ai/YOUR_USERNAME/student-depression-classifier` |
-
-> ⚠️ Replace with actual URLs after deployment.
 
 ---
 
