@@ -19,5 +19,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
 
-# Run the API
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the API (PORT is set dynamically by Render, default 8000 for local)
+CMD uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000}
