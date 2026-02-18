@@ -37,3 +37,9 @@ build/
 
 # Jupyter
 .ipynb_checkpoints/
+
+# W&B local logs
+wandb/
+
+# Root-level duplicate CSV (canonical copy is in data/)
+/student_lifestyle_100k.csv

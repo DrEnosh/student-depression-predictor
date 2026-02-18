@@ -18,6 +18,23 @@ services:
       - monitoring
     restart: unless-stopped
 
+  # --- Streamlit Frontend ---
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: depression-frontend
+    command: ["streamlit", "run", "frontend/app.py", "--server.address=0.0.0.0", "--server.port=8501"]
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000
+    networks:
+      - monitoring
+    restart: unless-stopped
+    depends_on:
+      - api
+
   # --- Prometheus ---
   prometheus:
     image: prom/prometheus:latest

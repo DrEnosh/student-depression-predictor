@@ -448,7 +448,8 @@ df = load_data_from_csv("data/student_lifestyle_100k.csv")</code></pre>
         <li><strong>Numerical (7 features):</strong> Age, CGPA, Sleep_Duration, Study_Hours, Social_Media_Hours,
             Physical_Activity, Stress_Level → <code>StandardScaler</code></li>
         <li><strong>Categorical (2 features):</strong> Gender, Department → <code>OneHotEncoder</code> (with
-            <code>handle_unknown="ignore"</code>)</li>
+            <code>handle_unknown="ignore"</code>)
+        </li>
     </ul>
 
     <h3>4.2 Classification Model</h3>
@@ -591,18 +592,21 @@ df = load_data_from_csv("data/student_lifestyle_100k.csv")</code></pre>
     </ul>
 
     <div class="screenshot-placeholder">
-        📸 INSERT W&amp;B DASHBOARD SCREENSHOT HERE<br>
-        <small>(Show experiment runs table with metrics comparison)</small>
+        <img src="screenshots/wandb_dashboard.png" alt="W&B Dashboard"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 1: W&B Experiment Dashboard</small>
     </div>
 
     <div class="screenshot-placeholder">
-        📸 INSERT W&amp;B CONFUSION MATRIX SCREENSHOT HERE<br>
-        <small>(Show the logged confusion matrix visualization)</small>
+        <img src="screenshots/wandb_confusion_matrix.png" alt="Confusion Matrix"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 2: Confusion Matrix</small>
     </div>
 
     <div class="screenshot-placeholder">
-        📸 INSERT W&amp;B ROC CURVE SCREENSHOT HERE<br>
-        <small>(Show the ROC curve plot)</small>
+        <img src="screenshots/wandb_roc_curve.png" alt="ROC Curve"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 3: ROC Curve</small>
     </div>
 
     <h3>Model Artifact</h3>
@@ -656,18 +660,21 @@ df = load_data_from_csv("data/student_lifestyle_100k.csv")</code></pre>
     <h3>7.3 Postman Testing</h3>
 
     <div class="screenshot-placeholder">
-        📸 INSERT POSTMAN SCREENSHOT: POST /predict (valid input → 200)<br>
-        <small>(Show successful prediction response)</small>
+        <img src="screenshots/postman_predict_200.png" alt="Postman Predict 200"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 4: Successful Prediction (200 OK)</small>
     </div>
 
     <div class="screenshot-placeholder">
-        📸 INSERT POSTMAN SCREENSHOT: POST /predict (missing fields → 422)<br>
-        <small>(Show validation error for edge case)</small>
+        <img src="screenshots/postman_predict_422.png" alt="Postman Predict 422"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 5: Validation Error (422 Unprocessable Entity)</small>
     </div>
 
     <div class="screenshot-placeholder">
-        📸 INSERT POSTMAN SCREENSHOT: GET /health (→ 200)<br>
-        <small>(Show health check response)</small>
+        <img src="screenshots/postman_health_200.png" alt="Postman Health 200"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 6: Health Check (200 OK)</small>
     </div>
 
     <!-- ==================== PAGE 7 ==================== -->
@@ -728,8 +735,9 @@ df = load_data_from_csv("data/student_lifestyle_100k.csv")</code></pre>
     </ol>
 
     <div class="screenshot-placeholder">
-        📸 INSERT GRAFANA DASHBOARD SCREENSHOT HERE<br>
-        <small>(Show the 6-panel dashboard at http://localhost:3000 after sending some predictions)</small>
+        <img src="screenshots/grafana_dashboard.png" alt="Grafana Dashboard"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 7: Grafana Monitoring Dashboard</small>
     </div>
 
     <!-- ==================== PAGE 8 ==================== -->
@@ -750,8 +758,9 @@ df = load_data_from_csv("data/student_lifestyle_100k.csv")</code></pre>
     </ul>
 
     <div class="screenshot-placeholder">
-        📸 INSERT STREAMLIT FRONTEND SCREENSHOT HERE<br>
-        <small>(Show the input form and a prediction result)</small>
+        <img src="screenshots/streamlit_frontend.png" alt="Streamlit Frontend"
+            style="max-width:100%; border:1px solid #ddd; border-radius:4px;">
+        <br><small>Figure 8: Streamlit Interface</small>
     </div>
 
     <h2 id="sec10">10. Testing &amp; Code Quality</h2>
