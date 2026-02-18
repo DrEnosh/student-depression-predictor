@@ -1,6 +1,6 @@
 """
 Streamlit frontend for the Student Depression Prediction system.
-Clean, premium design inspired by modern tech product pages.
+Clean, premium design with explicit light theme.
 
 Usage:
     streamlit run frontend/app.py
@@ -25,111 +25,140 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# --- Premium Light Theme CSS ---
+# --- CSS (all text colors explicitly set to dark) ---
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-    /* ===== GLOBAL ===== */
-    .stApp {
-        background: #fafafa;
+    /* Force all text dark */
+    .stApp, .stApp * {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
+    .stApp {
+        background-color: #f8f9fc !important;
+    }
+
+    /* Hide chrome */
     #MainMenu, header, footer { visibility: hidden; }
 
-    /* ===== HERO ===== */
-    .hero-section {
-        text-align: center;
-        padding: 3rem 1rem 2rem;
+    /* Force ALL text dark */
+    .stMarkdown, .stMarkdown p, .stMarkdown li,
+    .stText, p, span, div, li, td, th {
+        color: #1f2937 !important;
     }
+
+    /* ===== HERO ===== */
+    .hero-wrap {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 24px;
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.25);
+    }
+    .hero-wrap * { color: #fff !important; }
     .hero-badge {
         display: inline-block;
-        background: linear-gradient(135deg, #ede9fe, #e0e7ff);
-        color: #6366f1;
-        font-size: 0.75rem;
+        background: rgba(255,255,255,0.2);
+        color: #fff !important;
+        font-size: 0.72rem;
         font-weight: 700;
-        padding: 6px 16px;
+        padding: 5px 14px;
         border-radius: 20px;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         margin-bottom: 1rem;
+        backdrop-filter: blur(4px);
     }
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.8rem;
         font-weight: 900;
-        color: #111827;
+        color: #fff !important;
         line-height: 1.1;
         letter-spacing: -0.03em;
         margin: 0;
     }
-    .hero-title span {
-        background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
     .hero-desc {
-        color: #6b7280;
-        font-size: 1.1rem;
+        color: rgba(255,255,255,0.85) !important;
+        font-size: 1rem;
         font-weight: 400;
-        margin-top: 0.8rem;
-        max-width: 520px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-top: 0.7rem;
         line-height: 1.6;
     }
 
-    /* ===== CARDS ===== */
-    .info-card {
+    /* ===== SECTION ===== */
+    .section-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #111827 !important;
+        margin: 1.5rem 0 1rem;
+        letter-spacing: -0.01em;
+    }
+    .section-title span { color: #6366f1 !important; }
+
+    /* ===== INPUT CARDS ===== */
+    .input-card {
         background: #ffffff;
-        border: 1px solid #f0f0f0;
+        border: 1px solid #e5e7eb;
         border-radius: 16px;
-        padding: 1.5rem;
-        margin-bottom: 0.5rem;
+        padding: 1.2rem 1.4rem;
+        margin-bottom: 0.8rem;
         transition: all 0.25s ease;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
-    .info-card:hover {
-        border-color: #e0e0e0;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-        transform: translateY(-2px);
+    .input-card:hover {
+        border-color: #c7d2fe;
+        box-shadow: 0 6px 20px rgba(99,102,241,0.08);
+        transform: translateY(-1px);
     }
-    .card-header {
+    .card-head {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 0.2rem;
+        gap: 8px;
     }
-    .card-emoji { font-size: 1.4rem; }
+    .card-icon { font-size: 1.2rem; }
     .card-label {
         font-size: 0.7rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: #9ca3af;
+        color: #6366f1 !important;
     }
 
-    /* ===== SECTION TITLES ===== */
-    .section-title {
-        font-size: 1.4rem;
-        font-weight: 800;
-        color: #111827;
-        margin: 2.5rem 0 1rem;
-        letter-spacing: -0.02em;
-    }
-    .section-title span { color: #6366f1; }
-
-    /* ===== STREAMLIT OVERRIDES ===== */
-    label, .stSlider label, .stSelectbox label {
+    /* ===== STREAMLIT WIDGET OVERRIDES ===== */
+    /* Labels */
+    label, .stSlider label, .stSelectbox label,
+    [data-testid="stWidgetLabel"], [data-testid="stWidgetLabel"] p {
         color: #374151 !important;
         font-weight: 600 !important;
         font-size: 0.85rem !important;
     }
+
+    /* Slider track */
     .stSlider > div > div > div > div {
         background: linear-gradient(90deg, #6366f1, #8b5cf6) !important;
     }
+    /* Slider value */
+    .stSlider [data-testid="stTickBarMax"],
+    .stSlider [data-testid="stTickBarMin"],
+    .stSlider [data-testid="stThumbValue"] {
+        color: #374151 !important;
+    }
+
+    /* Selectbox */
+    .stSelectbox > div > div {
+        background: #ffffff !important;
+        border-color: #e5e7eb !important;
+        color: #1f2937 !important;
+    }
+    .stSelectbox > div > div > div {
+        color: #1f2937 !important;
+    }
+
+    /* Metric */
     div[data-testid="stMetricValue"] {
-        font-weight: 800 !important;
         color: #111827 !important;
+        font-weight: 800 !important;
     }
     div[data-testid="stMetricLabel"] {
         color: #6b7280 !important;
@@ -146,104 +175,148 @@ st.markdown("""
         font-size: 1.05rem !important;
         font-weight: 700 !important;
         border-radius: 14px !important;
-        letter-spacing: 0.01em !important;
         transition: all 0.3s ease !important;
         box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35) !important;
     }
     .stButton > button:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45) !important;
+        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5) !important;
     }
-    .stButton > button:active {
-        transform: translateY(0) !important;
+    .stButton > button:active { transform: translateY(0) !important; }
+    .stButton > button p, .stButton > button span {
+        color: #fff !important;
     }
 
-    /* ===== RESULT CARDS ===== */
+    /* ===== RESULTS ===== */
     @keyframes slideUp {
         from { opacity: 0; transform: translateY(16px); }
         to { opacity: 1; transform: translateY(0); }
     }
     .result-card {
         border-radius: 20px;
-        padding: 2.5rem 2rem;
+        padding: 2.2rem 2rem;
         text-align: center;
         animation: slideUp 0.5s ease-out;
+        margin-bottom: 1rem;
     }
     .result-safe {
         background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-        border: 1px solid #a7f3d0;
+        border: 1.5px solid #6ee7b7;
     }
     .result-risk {
         background: linear-gradient(135deg, #fef2f2, #fee2e2);
-        border: 1px solid #fecaca;
+        border: 1.5px solid #fca5a5;
     }
-    .result-icon { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+    .result-icon { font-size: 2.8rem; display: block; margin-bottom: 0.4rem; }
     .result-label {
         font-size: 1.5rem;
         font-weight: 800;
         letter-spacing: -0.01em;
     }
-    .result-safe .result-label { color: #059669; }
-    .result-risk .result-label { color: #dc2626; }
+    .result-safe .result-label { color: #059669 !important; }
+    .result-risk .result-label { color: #dc2626 !important; }
+    .result-safe .result-conf { color: #065f46 !important; }
+    .result-risk .result-conf { color: #991b1b !important; }
     .result-conf {
         font-size: 0.95rem;
-        color: #6b7280;
         margin-top: 4px;
     }
-    .result-conf b { color: #111827; }
+    .result-conf b { font-weight: 800; }
 
     /* ===== PROBABILITY BARS ===== */
     .prob-row {
         display: flex;
         align-items: center;
-        background: #fff;
-        border: 1px solid #f0f0f0;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
         border-radius: 14px;
         padding: 1rem 1.2rem;
         margin: 0.5rem 0;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
     .prob-name {
-        min-width: 130px;
+        min-width: 140px;
         font-weight: 600;
         font-size: 0.85rem;
-        color: #374151;
+        color: #374151 !important;
     }
     .prob-track {
         flex: 1;
-        height: 8px;
+        height: 10px;
         background: #f3f4f6;
-        border-radius: 4px;
+        border-radius: 5px;
         margin: 0 1rem;
         overflow: hidden;
     }
     .prob-fill-green {
         height: 100%;
         background: linear-gradient(90deg, #34d399, #10b981);
-        border-radius: 4px;
+        border-radius: 5px;
         transition: width 0.8s ease-out;
     }
     .prob-fill-red {
         height: 100%;
         background: linear-gradient(90deg, #f87171, #ef4444);
-        border-radius: 4px;
+        border-radius: 5px;
         transition: width 0.8s ease-out;
     }
     .prob-pct {
         font-weight: 800;
-        font-size: 0.95rem;
-        color: #111827;
-        min-width: 50px;
+        font-size: 1rem;
+        color: #111827 !important;
+        min-width: 55px;
         text-align: right;
+    }
+
+    /* ===== STATS ROW ===== */
+    .stats-row {
+        display: flex;
+        gap: 1rem;
+        margin: 1.2rem 0;
+    }
+    .stat-box {
+        flex: 1;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        padding: 1.2rem;
+        text-align: center;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        transition: all 0.2s ease;
+    }
+    .stat-box:hover {
+        border-color: #c7d2fe;
+        box-shadow: 0 4px 12px rgba(99,102,241,0.08);
+    }
+    .stat-value {
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #111827 !important;
+    }
+    .stat-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9ca3af !important;
+        margin-top: 4px;
     }
 
     /* ===== SIDEBAR ===== */
     section[data-testid="stSidebar"] {
         background: #ffffff !important;
-        border-right: 1px solid #f0f0f0 !important;
+        border-right: 1px solid #e5e7eb !important;
+    }
+    section[data-testid="stSidebar"] * {
+        color: #374151 !important;
+    }
+    section[data-testid="stSidebar"] h1,
+    section[data-testid="stSidebar"] h2,
+    section[data-testid="stSidebar"] h3 {
+        color: #111827 !important;
     }
 
-    /* Status indicator */
+    /* Status */
     .status-badge {
         display: inline-flex;
         align-items: center;
@@ -255,12 +328,12 @@ st.markdown("""
     }
     .status-up {
         background: #ecfdf5;
-        color: #059669;
+        color: #059669 !important;
         border: 1px solid #a7f3d0;
     }
     .status-down {
         background: #fef2f2;
-        color: #dc2626;
+        color: #dc2626 !important;
         border: 1px solid #fecaca;
     }
     .dot {
@@ -271,99 +344,65 @@ st.markdown("""
     .dot-green { background: #10b981; box-shadow: 0 0 6px rgba(16,185,129,0.5); }
     .dot-red { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.5); }
 
-    /* Sidebar text */
     .sidebar-info {
-        color: #6b7280;
+        color: #6b7280 !important;
         font-size: 0.82rem;
         line-height: 1.7;
         margin-top: 0.8rem;
     }
-    .sidebar-info b { color: #374151; }
-
-    /* ===== STATS ROW ===== */
-    .stats-row {
-        display: flex;
-        gap: 1rem;
-        margin: 1.5rem 0;
-    }
-    .stat-box {
-        flex: 1;
-        background: #fff;
-        border: 1px solid #f0f0f0;
-        border-radius: 14px;
-        padding: 1.2rem;
-        text-align: center;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-        transition: all 0.25s ease;
-    }
-    .stat-box:hover {
-        border-color: #e0e0e0;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-    .stat-value {
-        font-size: 1.5rem;
-        font-weight: 800;
-        color: #111827;
-    }
-    .stat-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #9ca3af;
-        margin-top: 4px;
-    }
+    .sidebar-info b { color: #374151 !important; }
 
     /* ===== FOOTER ===== */
     .app-footer {
         text-align: center;
-        padding: 2.5rem 0 1rem;
-        color: #d1d5db;
+        padding: 2rem 0 1rem;
         font-size: 0.78rem;
         letter-spacing: 0.03em;
     }
+    .app-footer, .app-footer * { color: #d1d5db !important; }
 
     /* Divider */
-    hr { border-color: #f0f0f0 !important; }
+    hr { border-color: #e5e7eb !important; }
 
     /* Expander */
     .streamlit-expanderHeader {
         color: #374151 !important;
         font-weight: 600 !important;
-        font-size: 0.9rem !important;
     }
+
+    /* Alerts / toast */
+    .stAlert p, .stAlert span { color: inherit !important; }
 </style>
 """, unsafe_allow_html=True)
 
 # ───────────────────────── HERO ─────────────────────────
 st.markdown("""
-<div class="hero-section">
+<div class="hero-wrap">
     <div class="hero-badge">🧬 AI-Powered Assessment</div>
-    <h1 class="hero-title">Student Depression<br><span>Risk Predictor</span></h1>
-    <p class="hero-desc">
-        Predict depression risk by analyzing student lifestyle data.
-        Powered by machine learning trained on 100K records.
-    </p>
+    <div class="hero-title">Student Depression<br>Risk Predictor</div>
+    <div class="hero-desc">
+        Predict depression risk by analyzing lifestyle data.<br>
+        Machine learning model trained on 100,000 student records.
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
 # ───────────────────────── SIDEBAR ─────────────────────────
 with st.sidebar:
     st.markdown("### ⚡ System Status")
-    api_online = False
     try:
         health_resp = requests.get(f"{API_URL}/health", timeout=10)
         if health_resp.status_code == 200:
             health = health_resp.json()
-            api_online = True
             st.markdown(
                 '<span class="status-badge status-up">'
                 '<span class="dot dot-green"></span>API Online</span>',
                 unsafe_allow_html=True,
             )
+            model_status = '✅ Loaded' if health['model_loaded'] else '❌ Not loaded'
             st.markdown(f"""
             <div class="sidebar-info">
-                Model: <b>{'✅ Loaded' if health['model_loaded'] else '❌ Not loaded'}</b><br>
+                Model: <b>{model_status}</b><br>
                 Version: <b>{health['version']}</b>
             </div>
             """, unsafe_allow_html=True)
@@ -388,7 +427,7 @@ with st.sidebar:
         trained on <b>100,000 student records</b> to assess
         depression risk from lifestyle and academic factors.
         <br><br>
-        <b>9 features</b> are analyzed including age, sleep,
+        <b>9 features</b> analyzed including age, sleep,
         stress, CGPA, and physical activity.
         <br><br>
         Built with <b>FastAPI</b> · <b>scikit-learn</b> · <b>Streamlit</b>
@@ -405,9 +444,9 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.markdown(
-        '<div class="info-card">'
-        '<div class="card-header">'
-        '<span class="card-emoji">👤</span>'
+        '<div class="input-card">'
+        '<div class="card-head">'
+        '<span class="card-icon">👤</span>'
         '<span class="card-label">Demographics</span>'
         '</div></div>',
         unsafe_allow_html=True,
@@ -421,9 +460,9 @@ with col1:
 
 with col2:
     st.markdown(
-        '<div class="info-card">'
-        '<div class="card-header">'
-        '<span class="card-emoji">📚</span>'
+        '<div class="input-card">'
+        '<div class="card-head">'
+        '<span class="card-icon">📚</span>'
         '<span class="card-label">Academics</span>'
         '</div></div>',
         unsafe_allow_html=True,
@@ -438,9 +477,9 @@ with col2:
 
 with col3:
     st.markdown(
-        '<div class="info-card">'
-        '<div class="card-header">'
-        '<span class="card-emoji">🏃</span>'
+        '<div class="input-card">'
+        '<div class="card-head">'
+        '<span class="card-icon">🏃</span>'
         '<span class="card-label">Lifestyle</span>'
         '</div></div>',
         unsafe_allow_html=True,
@@ -485,7 +524,7 @@ if st.button("🔮  Analyze Depression Risk", use_container_width=True):
                 unsafe_allow_html=True,
             )
 
-            # ── Result Card ──
+            # Result Card
             if result["prediction"] == 1:
                 prob = result["probability_depression"]
                 st.markdown(f"""
@@ -505,9 +544,7 @@ if st.button("🔮  Analyze Depression Risk", use_container_width=True):
                 </div>
                 """, unsafe_allow_html=True)
 
-            st.markdown("<br>", unsafe_allow_html=True)
-
-            # ── Probability Bars ──
+            # Probability Bars
             no_dep = result["probability_no_depression"]
             dep = result["probability_depression"]
 
@@ -528,7 +565,7 @@ if st.button("🔮  Analyze Depression Risk", use_container_width=True):
             </div>
             """, unsafe_allow_html=True)
 
-            # ── Stats Row ──
+            # Stats Row
             st.markdown(f"""
             <div class="stats-row">
                 <div class="stat-box">
@@ -551,7 +588,7 @@ if st.button("🔮  Analyze Depression Risk", use_container_width=True):
                 st.json(payload)
 
         elif response.status_code == 503:
-            st.error("⚠️ Model not loaded. Please try again shortly.")
+            st.error("⚠️ Model not loaded. Try again shortly.")
         else:
             st.error(f"API Error {response.status_code}: {response.text}")
 
