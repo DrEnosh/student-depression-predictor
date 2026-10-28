@@ -178,8 +178,8 @@ MTA/
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/enosh729-design/Student-Depression-Predictor.git
-cd Student-Depression-Predictor
+git clone https://github.com/DrEnosh/student-depression-predictor.git
+cd student-depression-predictor
 python -m venv venv
 venv\Scripts\activate          # Windows
 pip install -r requirements.txt
