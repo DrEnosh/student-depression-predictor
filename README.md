@@ -1,4 +1,4 @@
-# 🧠 Student Depression Classification Pipeline
+# Student Depression Classification Pipeline
 
 > **ML Classification System with MLOps Best Practices** — End-to-end pipeline from data ingestion to deployment, featuring experiment tracking, API serving, monitoring, and CI/CD.
 
@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Architecture](#architecture)
